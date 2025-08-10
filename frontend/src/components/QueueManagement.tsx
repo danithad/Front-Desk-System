@@ -47,7 +47,7 @@ export default function QueueManagement() {
 
   const fetchPatients = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/queue')
+      const response = await axios.get('/api/queue')
       setPatients(response.data)
     } catch (error) {
       console.error('Error fetching patients:', error)
@@ -58,7 +58,7 @@ export default function QueueManagement() {
 
   const addPatient = async (data: AddPatientForm) => {
     try {
-      await axios.post('http://localhost:3001/queue', data)
+      await axios.post('/api/queue', data)
       setShowAddForm(false)
       reset()
       fetchPatients()
@@ -69,7 +69,7 @@ export default function QueueManagement() {
 
   const updateStatus = async (id: number, status: PatientQueue['status']) => {
     try {
-      await axios.put(`http://localhost:3001/queue/${id}/status`, { status })
+      await axios.put(`/api/queue/${id}/status`, { status })
       fetchPatients()
     } catch (error) {
       console.error('Error updating status:', error)
@@ -78,7 +78,7 @@ export default function QueueManagement() {
 
   const updatePriority = async (id: number, priority: PatientQueue['priority']) => {
     try {
-      await axios.put(`http://localhost:3001/queue/${id}/priority`, { priority })
+      await axios.put(`/api/queue/${id}/priority`, { priority })
       fetchPatients()
     } catch (error) {
       console.error('Error updating priority:', error)
@@ -87,7 +87,7 @@ export default function QueueManagement() {
 
   const removePatient = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:3001/queue/${id}`)
+      await axios.delete(`/api/queue/${id}`)
       fetchPatients()
     } catch (error) {
       console.error('Error removing patient:', error)

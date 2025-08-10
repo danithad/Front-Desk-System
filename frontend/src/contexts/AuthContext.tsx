@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
+      const response = await axios.post('/api/auth/login', {
         email,
         password,
       })

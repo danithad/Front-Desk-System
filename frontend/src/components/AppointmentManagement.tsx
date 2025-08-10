@@ -64,7 +64,7 @@ export default function AppointmentManagement() {
 
   const fetchAppointments = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/appointments?date=${selectedDate}`)
+      const response = await axios.get(`/api/appointments?date=${selectedDate}`)
       setAppointments(response.data)
     } catch (error) {
       console.error('Error fetching appointments:', error)
@@ -75,7 +75,7 @@ export default function AppointmentManagement() {
 
   const fetchDoctors = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/doctors')
+      const response = await axios.get('/api/doctors')
       setDoctors(response.data)
     } catch (error) {
       console.error('Error fetching doctors:', error)
@@ -84,7 +84,7 @@ export default function AppointmentManagement() {
 
   const scheduleAppointment = async (data: AppointmentForm) => {
     try {
-      await axios.post('http://localhost:3001/appointments', data)
+      await axios.post('/api/appointments', data)
       setShowScheduleForm(false)
       reset()
       fetchAppointments()
@@ -95,7 +95,7 @@ export default function AppointmentManagement() {
 
   const updateAppointmentStatus = async (id: number, status: Appointment['status']) => {
     try {
-      await axios.put(`http://localhost:3001/appointments/${id}/status`, { status })
+      await axios.put(`/api/appointments/${id}/status`, { status })
       fetchAppointments()
     } catch (error) {
       console.error('Error updating appointment status:', error)
@@ -104,7 +104,7 @@ export default function AppointmentManagement() {
 
   const cancelAppointment = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:3001/appointments/${id}`)
+      await axios.delete(`/api/appointments/${id}`)
       fetchAppointments()
     } catch (error) {
       console.error('Error canceling appointment:', error)
